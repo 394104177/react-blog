@@ -1,0 +1,13 @@
+.header-container{
+    padding: 0 25px;
+}
+
+.header-container .left{
+    float: left;
+    margin-top: 30px;
+}
+
+.header-container .right{
+    float: right;
+    margin-top: 30px;
+}

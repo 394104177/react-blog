@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import Login from "./pages/Login"
+import Admin from "./pages/Admin"
+import ProtectRoute from "./components/protectRoute"
+import RouteGuard from "../src/routeGuard"
+import path from "path"
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    console.log(path.resolve("../","services/articles.js"))
+    return (
+        <Router getUserConfirmation={(v, callback) => {
+            console.log(!v)
+            callback(function () {
+                if (!v) {
+                    return true
+                }
+                return false
+            }())
+        }}>
+            <RouteGuard onChange={(prevLocation, location, action, unlisten) => {
+                console.log(prevLocation, location, action)
+            }}>
+                <Switch>
+                    <Route path="/login" component={Login} exact></Route>
+                    <ProtectRoute component={Admin} />
+                </Switch>
+            </RouteGuard>
+        </Router >
+    );
 }
 
 export default App;
