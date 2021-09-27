@@ -1,0 +1,21 @@
+<% include common/head.ejs %>
+<h1>登录页内容</h1>
+<form action="" method="POST">
+    <div>
+        <label for="account">账号</label>
+        <input type="text" name="account" value="<%= loginId %> " >
+        <label for="password">密码</label>
+        <input type="password" name="password" >
+        <button>提交</button>
+        <div class="err">
+            <% if (err) { %>
+                <%= err %> 
+               <% } %>
+        </div>
+       
+     
+      
+    </div>
+</form>
+<script src="/public/js/form.js"></script>
+<% include common/footer.ejs %>
