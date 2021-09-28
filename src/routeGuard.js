@@ -9,7 +9,7 @@ class routeGuard extends Component {
             }
         })
 
-        // this.props.history.block("不阻止")
+      
     }
     componentWillUnmount() {
         this.unlisten()
