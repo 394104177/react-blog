@@ -6,6 +6,7 @@ import 'antd/dist/antd.css';
 import { Card, Input, Button, Spin, message } from 'antd';
 import { LockTwoTone, UserOutlined } from "@ant-design/icons"
 import axios from "axios"
+import baseUrl from "../../services/getBaseUrl"
 export default function Login(props) {
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
@@ -55,7 +56,7 @@ export default function Login(props) {
                             setIsLoading(false)
                             return false
                         }
-                        axios.post("http://localhost:7001/backEnd/checkLogin", dataProps,{
+                        axios.post(baseUrl+"backEnd/checkLogin", dataProps,{
                             withCredentials: true
                         })
                             .then(res => {

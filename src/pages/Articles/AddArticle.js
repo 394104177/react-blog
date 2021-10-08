@@ -5,6 +5,7 @@ import { Row, Col, Input, Select, Button, DatePicker, message, Popconfirm } from
 import axios from 'axios'
 import moment from '_moment@2.29.1@moment';
 import { Prompt, Redirect } from 'react-router';
+import baseUrl from "../../services/getBaseUrl"
 
 const { Option } = Select;
 const { TextArea } = Input
@@ -56,7 +57,7 @@ const ArticleAdd = (props) => {
 
             const res = await axios({
                 method: 'get',
-                url: "http://localhost:7001/backEnd/getTypeInfo",
+                url: baseUrl+"backEnd/getTypeInfo",
                 header: { 'Access-Control-Allow-Origin': '*' },
                 withCredentials: true
             })
@@ -106,7 +107,7 @@ const ArticleAdd = (props) => {
             dataProps.viewCount = Math.ceil(Math.random() * 100) + 1000
             axios({
                 method: 'post',
-                url: "http://localhost:7001/backEnd/addArticles",
+                url: baseUrl+"backEnd/addArticles",
                 data: dataProps,
                 withCredentials: true
             }).then(
@@ -128,7 +129,7 @@ const ArticleAdd = (props) => {
 
             axios({
                 method: 'post',
-                url: "http://localhost:7001/backEnd/updateArticle",
+                url: baseUrl+"backEnd/updateArticle",
                 data: dataProps,
                 withCredentials: true
             }).then(
@@ -145,7 +146,7 @@ const ArticleAdd = (props) => {
         }
     }
     const getArticleById = (id) => {
-        axios("http://localhost:7001/backEnd/getArticleById/" + id, {
+        axios(baseUrl+"backEnd/getArticleById/" + id, {
             withCredentials: true,
             header: { 'Access-Control-Allow-Origin': '*' }
         }).then(

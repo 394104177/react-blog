@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import "./ArticleList.css"
 import { List, Row, Col, Modal, message, Button, Switch } from 'antd';
 import axios from 'axios'
+import baseUrl from "../../services/getBaseUrl"
 const { confirm } = Modal;
 function ArticleList(props) {
 
@@ -11,7 +12,7 @@ function ArticleList(props) {
     const getList = () => {
         axios({
             method: 'get',
-            url: "http://localhost:7001/backEnd/getArticleList",
+            url: baseUrl+"backEnd/getArticleList",
             withCredentials: true,
             header: { 'Access-Control-Allow-Origin': '*' }
         }).then(
@@ -28,7 +29,7 @@ function ArticleList(props) {
             title: '确定要删除这篇博客文章吗?',
             content: '如果你点击OK按钮，文章将会永远被删除，无法恢复。',
             onOk() {
-                axios("http://localhost:7001/backEnd/delArticle/"+id, { withCredentials: true }).then(
+                axios(baseUrl+"backEnd/delArticle/"+id, { withCredentials: true }).then(
                     res => {
                         message.success('文章删除成功')
                         getList()
