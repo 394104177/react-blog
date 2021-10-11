@@ -96,7 +96,9 @@ function Detail(props) {
 Detail.getInitialProps = async (context) => {
     const promise = new Promise((resolve) => {
         console.log('context', context)
-        axios.get("http://127.0.0.1:7001/frontEnd/getArticleById/" + context.query.id).then((res) => {
+        const env = process.env.NODE_ENV
+        const baseUrl = env==="development"?"http://127.0.0.1:7001/":"http://api.techgrow.top/"
+        axios.get(baseUrl+"frontEnd/getArticleById/" + context.query.id).then((res) => {
             resolve(res.data)
         })
     })

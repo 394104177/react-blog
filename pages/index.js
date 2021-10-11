@@ -11,7 +11,7 @@ import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
 
 function Home(props) {
-    console.log(process.env)
+    console.dir(process)
     const [myList, setMylist] = useState(props.data)
     const renderer = new marked.Renderer();
     marked.setOptions({
@@ -68,8 +68,10 @@ function Home(props) {
 
 Home.getInitialProps = async () => {
     const promise = new Promise((resolve) => {
-        console.log('props')
-        axios.get("http://127.0.0.1:7001/frontEnd/getArticleList").then((res) => {
+        const env = process.env.NODE_ENV
+        const baseUrl = env==="development"?"http://127.0.0.1:7001/":"http://api.techgrow.top/"
+
+        axios.get(baseUrl+"frontEnd/getArticleList").then((res) => {
             resolve(res.data)
         })
     })
