@@ -42,7 +42,7 @@ module.exports = appInfo => {
     csrf: {
       enable: false,
     },
-    domainWhiteList: [ 'http://localhost:3000', 'http://localhost:3001', 'http://admin.techgrow.top' ],
+    domainWhiteList: [ 'http://localhost:3000', 'http://localhost:3001', 'http://admin.techgrow.top', 'http://blog.techgrow.top' ],
   };
 
   // mongoose
